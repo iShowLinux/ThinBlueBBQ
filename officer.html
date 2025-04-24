@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" id="favicon" href="favicon-light.ico">
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/magnific.popup.css">
+    <link rel="stylesheet" href="./assets/css/font.css">
+    <link rel="stylesheet" href="./assets/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/aos.css">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Officers</title>
+</head>
+<body>
+    <div id="home"></div>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="logo" href="index.html">
+                    <img src="assets/image/dark-logo.png" alt="logo" class="img-fluid logo" id="header-logo">
+                </a>
+                <button class="navbar_toggler d-lg-none" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#home">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#about">About Us</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#menu">Menu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#booking">Catering</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#competitions">Competitions</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact Us</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="about" class="section_top_spacing">
+        <div class="container">
+            <div class="about_section">
+                <h2 class="section_title"
+                    >Officers to Honor</h2>
+            </div>
+            <div class="carousel" role="region" aria-label="Officers carousel">
+                <div class="slides"></div>
+                <div class="controls">
+                    <button class="control-btn" onclick="prevSlide()" aria-label="Previous slide">◀</button>
+                    <button class="control-btn" onclick="nextSlide()" aria-label="Next slide">▶</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const officers = Array.from({ length: 24 }, (_, index) => ({
+    image: `assets/image/officers/officer${index + 1}.jpg`,
+    name: `Officer ${index + 1}`, // Placeholder names
+    title: `Role ${index + 1}`   // Placeholder titles
+}));
+
+const slidesContainer = document.querySelector('.slides');
+let currentSlide = 0;
+const totalSlides = officers.length;
+
+// Dynamically create slides
+officers.forEach((officer, index) => {
+    const slide = document.createElement('div');
+    slide.classList.add('slide');
+    slide.setAttribute('role', 'group');
+    slide.setAttribute('aria-roledescription', 'slide');
+    slide.innerHTML = `
+        <img src="${officer.image}" alt="${officer.name}">
+        <div class="slide-content">
+            <h3>${officer.name}</h3>
+            <p>${officer.title}</p>
+        </div>
+    `;
+    slidesContainer.appendChild(slide);
+});
+
+function updateDots() {
+    document.querySelectorAll('.dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
+
+function showSlide(index) {
+    if (index >= totalSlides) {
+        currentSlide = 0;
+    } else if (index < 0) {
+        currentSlide = totalSlides - 1;
+    } else {
+        currentSlide = index;
+    }
+    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+    updateDots();
+    updateAria();
+}
+
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+    showSlide(currentSlide - 1);
+}
+
+// Accessibility: Update aria attributes
+function updateAria() {
+    document.querySelectorAll('.slide').forEach((slide, index) => {
+        slide.setAttribute('aria-hidden', index !== currentSlide);
+    });
+}
+
+// Initialize ARIA
+updateAria();
+
+// Optional: Auto-slide
+let autoSlide = setInterval(nextSlide, 5000);
+
+// Pause auto-slide on hover
+document.querySelector('.carousel').addEventListener('mouseenter', () => {
+    clearInterval(autoSlide);
+});
+
+document.querySelector('.carousel').addEventListener('mouseleave', () => {
+    autoSlide = setInterval(nextSlide, 5000);
+});
+
+// Keyboard navigation
+document.querySelector('.carousel').addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') prevSlide();
+    if (e.key === 'ArrowRight') nextSlide();
+});
+    </script>
+</body>
+</html>

@@ -1,0 +1,209 @@
+// =============== LOADER JS ===============
+window.addEventListener('load', function () {
+    document.querySelector('.web_loader').classList.remove('loader_display');
+
+});
+
+
+// =============== LIGHT & DARK FAV-ICON ===============
+function isDarkModeEnabled() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+}
+function updateFavicon() {
+    const favicon = document.getElementById('favicon');
+    const headerLogo = document.getElementById('header-logo');
+    const footerLogo = document.getElementById('footer-logo');
+    if (isDarkModeEnabled()) {
+        favicon.href = './assets/image/light-fav-icon.png';
+        headerLogo.src = 'assets/image/light-logo.png';
+        footerLogo.src = 'assets/image/dark-logo.png';
+    } else {
+        favicon.href = './assets/image/dark-fav-icon.png';
+        headerLogo.src = 'assets/image/dark-logo.png';
+        footerLogo.src = 'assets/image/light-logo.png';
+    }
+}
+updateFavicon();
+window.matchMedia('(prefers-color-scheme: dark)').addListener(updateFavicon);
+
+
+// =============== NAVBAR ===============
+const header = document.querySelector('header');
+
+function handleScroll() {
+    if (window.innerWidth > 991) {
+        if (window.pageYOffset > 0) {
+            header.classList.add('nav_scroll');
+        } else {
+            header.classList.remove('nav_scroll');
+        }
+    }
+}
+
+function onScroll(event) {
+    var scrollPos = jQuery(document).scrollTop();
+    jQuery("header ul li a").each(function () {
+        var currLink = jQuery(this);
+        var refElement = jQuery(currLink.attr("href"));
+        if (refElement.length &&
+            refElement.offset().top - 100 <= scrollPos &&
+            refElement.offset().top + refElement.height() > scrollPos
+        ) {
+            jQuery("header ul li a").removeClass("active");
+            currLink.addClass("active");
+        } else {
+            currLink.removeClass("active");
+        }
+    });
+}
+
+window.addEventListener('scroll', handleScroll);
+window.addEventListener('resize', handleScroll);
+
+jQuery("header ul li a").each(function () {
+    jQuery(this).on("click", function (event) {
+        event.preventDefault();
+        var currentId = jQuery(this).attr("href");
+        setTimeout(() => {
+            var targetElement = jQuery(currentId);
+            if (targetElement.length) {
+                jQuery("html, body").animate(
+                    {
+                        scrollTop: targetElement.offset().top - 0
+                    },
+                    100 // Adjust scroll speed here
+                );
+            }
+        }, 0);
+    });
+});
+
+jQuery(window).on("scroll", onScroll);
+
+
+
+
+
+var carouselWidth = $(".carousel-inner")[0].scrollWidth;
+var cardWidth = $(".carousel-item").width();
+var scrollPosition = 0;
+$(".carousel-control-next").on("click", function () {
+    if (scrollPosition < (carouselWidth - cardWidth * 4)) { //check if you can go any further
+      scrollPosition += cardWidth;  //update scroll position
+      $(".carousel-inner").animate({ scrollLeft: scrollPosition },600); //scroll left
+    }
+});
+
+$(".carousel-control-prev").on("click", function () {
+    if (scrollPosition > 0) {
+        scrollPosition -= cardWidth;
+        $(".carousel-inner").animate(
+            { scrollLeft: scrollPosition },
+            600
+        );
+    }
+});
+
+
+const officers = Array.from({ length: 24 }, (_, index) => ({
+    image: `assets/image/officers/officer${index + 1}.jpg`,
+    name: `Officer ${index + 1}`, // Placeholder names
+    title: `Role ${index + 1}`   // Placeholder titles
+}));
+
+const slidesContainer = document.querySelector('.slides');
+let currentSlide = 0;
+const totalSlides = officers.length;
+
+// Dynamically create slides
+officers.forEach((officer, index) => {
+    const slide = document.createElement('div');
+    slide.classList.add('slide');
+    slide.setAttribute('role', 'group');
+    slide.setAttribute('aria-roledescription', 'slide');
+    slide.innerHTML = `
+        <img src="${officer.image}" alt="${officer.name}">
+        <div class="slide-content">
+            <h3>${officer.name}</h3>
+            <p>${officer.title}</p>
+        </div>
+    `;
+    slidesContainer.appendChild(slide);
+});
+
+function updateDots() {
+    document.querySelectorAll('.dot').forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSlide);
+    });
+}
+
+function showSlide(index) {
+    if (index >= totalSlides) {
+        currentSlide = 0;
+    } else if (index < 0) {
+        currentSlide = totalSlides - 1;
+    } else {
+        currentSlide = index;
+    }
+    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+    updateDots();
+    updateAria();
+}
+
+function nextSlide() {
+    showSlide(currentSlide + 1);
+}
+
+function prevSlide() {
+    showSlide(currentSlide - 1);
+}
+
+// Accessibility: Update aria attributes
+function updateAria() {
+    document.querySelectorAll('.slide').forEach((slide, index) => {
+        slide.setAttribute('aria-hidden', index !== currentSlide);
+    });
+}
+
+// Initialize ARIA
+updateAria();
+
+// Optional: Auto-slide
+let autoSlide = setInterval(nextSlide, 5000);
+
+// Pause auto-slide on hover
+document.querySelector('.carousel').addEventListener('mouseenter', () => {
+    clearInterval(autoSlide);
+});
+
+document.querySelector('.carousel').addEventListener('mouseleave', () => {
+    autoSlide = setInterval(nextSlide, 5000);
+});
+
+// Keyboard navigation
+document.querySelector('.carousel').addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') prevSlide();
+    if (e.key === 'ArrowRight') nextSlide();
+});
+
+// =============== DISABLE INSPECT & SAVE CODE ===============
+// document.addEventListener('contextmenu', function (event) {
+//     event.preventDefault();
+// });
+// document.addEventListener('keydown', function (event) {
+//     const forbiddenKeys = ['F12', 'U', 'u', 's', 'S', 'M', 'm', 'I', 'i'];
+//     if (forbiddenKeys.includes(event.key) && (event.ctrlKey || event.metaKey)) {
+//         event.preventDefault();
+//     }
+//     if ((event.key === 'F12' && event.code === 'F12') ||
+//         (event.key === 'F12' && event.keyCode === 123) ||
+//         (event.key === 'F12' && event.code === 'F12' && event.keyIdentifier === 'F12')
+//     ) {
+//         window.close();
+//     }
+//     if ((event.key === 'F12' && event.code === 'F12' && event.fnKey) ||
+//         (event.key === 'F12' && event.keyCode === 123 && event.fnKey)
+//     ) {
+//         window.close();
+//     }
+// });
