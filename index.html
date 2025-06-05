@@ -2,6 +2,83 @@
 <html lang="en">
 
 <head>
+    <style>
+        :root {
+            --roster-bg: #f4f4f8;
+            --roster-text: #161616;
+            --roster-title: #223366;
+            --roster-shadow: 0 2px 8px rgba(0,0,0,0.04);
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --roster-bg: #23273a;
+                --roster-text: #f1f1f1;
+                --roster-title: #7db2ff;
+                --roster-shadow: 0 2px 8px rgba(0,0,0,0.18);
+            }
+        }
+        @media (min-width: 1025px) {
+            .sponsor-label, .affiliate-label {
+                font-size: 7.875rem !important; /* 25% smaller than 10.5rem */
+            }
+        }
+        @media (max-width: 768px) {
+            .sponsor-label, .affiliate-label {
+                font-size: 12rem !important; /* Larger on mobile */
+            }
+        }
+        .pit-crew-roster {
+            text-align: center;
+            margin: 2rem auto;
+            padding: clamp(1.5rem, 5vw, 2.5rem);
+            background: var(--roster-bg);
+            border-radius: 12px;
+            box-shadow: var(--roster-shadow);
+            width: 90vw;
+            max-width: 480px;
+            color: var(--roster-text);
+        }
+        .pit-crew-roster-title {
+            font-size: clamp(1.25rem, 2.5vw, 1.75rem);
+            letter-spacing: 1px;
+            display: block;
+            margin-bottom: 1rem;
+            color: var(--roster-title);
+        }
+        .pit-crew-roster-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+        }
+        .pit-crew-roster-list li {
+            margin-bottom: 0.5rem;
+        }
+        .hero-section-spaced {
+            margin-top: 3rem;
+        }
+        @keyframes sponsor-float {
+            0% { transform: translateY(0px); }
+            40% { transform: translateY(-6px) scale(1.03); }
+            60% { transform: translateY(-6px) scale(1.03); }
+            100% { transform: translateY(0px); }
+        }
+        .sponsor-animate {
+            animation: sponsor-float 2.8s ease-in-out infinite;
+            will-change: transform;
+        }
+        @media (max-width: 400px) {
+            .pit-crew-roster {
+                padding: 1rem;
+            }
+            .pit-crew-roster-title {
+                font-size: 1.1rem;
+            }
+            .pit-crew-roster-list {
+                font-size: 0.95rem;
+            }
+        }
+    </style>
 
     <!-- =============== META TAG =============== -->
     <meta charset="UTF-8">
@@ -55,8 +132,41 @@
         .call-button i {
             font-size: 20px;
         }
-    </style>
+        
+        @media (max-width: 768px) {
+            /* Adjust Twitch embed size for mobile screens */
+            #twitchStream {
+                height: 300px; /* Increase height for better visibility on small screens */
+                width: 100%;
+            }
 
+            /* Improve overall layout for mobile */
+            .col-lg-5, .col-lg-7 {
+                width: 100%; /* Make columns full-width on mobile */
+                padding: 5px; /* Reduce padding for smaller screens */
+            }
+
+            .about_img, .about_video {
+                margin-bottom: 20px; /* Add space between elements */
+            }
+
+            /* Center text and elements for better readability */
+            .section_title, .menu-title-desc, .product-price {
+                text-align: center;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&display=swap" rel="stylesheet">
+
+    <style>
+        @media (min-width: 992px) {
+            .sponsor-label, .affiliate-label {
+                font-size: 7.875rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -72,7 +182,7 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="logo" href="index.html">
-                    <img src="assets/image/dark-logo.png" alt="logo" class="img-fluid logo" id="header-logo">
+                    <img src="assets/image/dark-logo.png" alt="logo" class="img-fluid logo">
                 </a>
                 <button class="navbar_toggler d-lg-none" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -113,7 +223,7 @@
     <!-- =============== NAVBAR SECTION END =============== -->
 
     <!-- =============== HERO SECTION START =============== -->
-    <section>
+    <section class="hero-section-spaced">
         <div class="container">
             <div class="hero_section">
                 <div class="row">
@@ -121,19 +231,71 @@
                         <h1 class="hero_section_title" data-aos="fade-up" data-aos-anchor-placement="top-bottom">A
                             BBQ Journey Like No Other</h1>
                         <div class="hero_section_semititle" data-aos="fade-up" data-aos-anchor-placement="top-bottom"></div>
-                        <p class="hero_section_detail" data-aos="fade-up" data-aos-anchor-placement="top-bottom">Welcome
-                            to Thin Blue BBQ, where we bring the art of barbecue to life! Each bite tells a story of rich
-                            flavors and expert craftsmanship. Dive into a world of smoky goodness and savor dishes that
-                            are true masterpieces, crafted to excite your taste buds. Join us on a mouthwatering journey
-                            that promises to leave you craving more. At Thin Blues BBQ every competition is an
-                            unforgettable experience filled with culinary delight!</p>
-                        <a href="https://www.twitch.tv/thinbluebbq" class="common_btn" data-aos="fade-up"
-                            data-aos-anchor-placement="top-bottom"><span>Watch Our Stream!</span></a>
+                        <p class="hero_section_detail" data-aos="fade-up" data-aos-anchor-placement="top-bottom" style="line-height: 1.8; max-width: 85%; margin: 1.5rem auto; text-align: justify;">Welcome to Thin Blue BBQ! A catering and award-winning competition team based in
+                            the heart of Michigan with a passion for service and BBQ. Our team is driven by a
+                            shared love for bold flavors and the art of smoking. We use fresh, locally sourced
+                            ingredients to craft our award-winning BBQ.
+                            As a competition team, we bring our best to every event. We blend tradition and
+                            innovation to deliver mouthwatering results. From slow-smoked brisket to perfectly
+                            seasoned ribs, every bite showcases our dedication to quality and flavor.
+                            Our expertise doesn’t stop at the competition table — we also offer catering services for
+                            events big and small. Whether it’s a family reunion, corporate gathering, or wedding,
+                            Thin Blue BBQ will bring the same championship-level BBQ to your special occasion.
+                            We’re proud to serve our community and share our passion for BBQ. Let Thin Blue BBQ
+                            make your next event unforgettable with savory smoky goodness and a side of warm
+                            hospitality and service.</p>
+                        <div style="margin: 2rem auto; max-width: 85%;">
+                            <div class="pit-crew-roster">
+    <strong class="pit-crew-roster-title">Pit Crew</strong>
+    <ul class="pit-crew-roster-list">
+        <li>Greg Sawmiller</li>
+        <li>Roy Elkins</li>
+        <li>Jason Sawmiller</li>
+        <li>Randy Elkins</li>
+    </ul>
+</div>
+                        </div>
                     </div>
+                    
                     <div class="col-lg-6 align-self-center" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-                        <div class="hero_img">
-                            <img src="./assets/image/hero-section/hero1-img.png" alt="hero-img"
-                                class="img-fluid d-block w-100 h-100">
+                        <div class="hero_flex" style="display: flex; align-items: flex-start; justify-content: center; gap: 2rem; margin-top: 2rem;">
+                           
+<div class="hero_img" style="margin-top: 2rem;">
+    <div class="hero_logos" style="display: flex; flex-direction: column; justify-content: flex-start; align-items: center; gap: 2.5rem; margin-bottom: 1rem; width: 100%;">
+  <!--sponsor start-->
+  <div class="sponsor-group" style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 500px;">
+    <span class="sponsor-label rubik-glitch-regular" style="font-size: 10.5rem; font-weight: 200; color: #ffd700; margin-bottom: 0.5rem; letter-spacing: 2px; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Sponsors</span>
+    <div class="sponsor-logos" style="display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; width: 100%;">
+      <a href="https://bakersacehardware.com/" target="_blank"><img src="./assets/image/logos/bakers.png" alt="Bakers" class="sponsor-animate" style="max-height: 110px; width: auto;"></a>
+      <a href="https://villagemarket.net/" target="_blank"><img src="./assets/image/logos/vm.jpg" alt="Village Market" class="sponsor-animate" style="max-height: 110px; width: auto;"></a>
+      <img src="./assets/image/logos/bcyber.jpg" alt="BCyber" class="sponsor-animate" style="max-height: 110px; width: auto;">
+    </div>
+    <p style="margin-top: 1rem; color: var(--text-secondary); font-size: 1.6rem;">Thank you to our sponsors for their support!
+        <br>
+        If you would like to become a sponsor please <a href="#contact">contact us.</a>
+    </p>
+  </div>
+  <!--sponsor end-->
+  <!-- affiliate start-->
+  <div class="affiliate-group" style="display: flex; flex-direction: column; align-items: center; width: 100%; max-width: 500px;">
+    <span class="affiliate-label rubik-glitch-regular" style="font-size: 10.5rem; font-weight: 200; color: #ffd700; margin-bottom: 0.5rem; letter-spacing: 2px; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);">Affiliates</span>
+    <div class="affiliate-logos" style="display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; width: 100%;">
+      <a href="https://glbbqa.com/" target="_blank"><img src="./assets/image/logos/greatlakesbbq.jpg" alt="Great Lakes BBQ" style="max-height: 110px; width: auto;"></a>
+      <a href="https://www.kcbs.us/" target="_blank"><img src="./assets/image/logos/kcbs.jpg" alt="KCBS" style="max-height: 110px; width: auto;"></a>
+    </div>
+  </div>
+  <!-- affiliate end-->
+</div>
+<div>
+    <!-- <img src="./assets/image/hero-section/hero1-img.png" alt="hero-img"
+        class="img-fluid d-block w-100 h-100"> -->
+</div>
+
+
+        
+                            </div>
+                            <!-- Add any additional flexbox content here if needed -->
+                             
                         </div>
                     </div>
                 </div>
@@ -142,40 +304,114 @@
     </section>
     <!-- =============== HERO SECTION END =============== -->
 
+    <!-- =============== LOGOS & AFFILIATIONS START =============== -->
+
+    <!-- =============== LOGOS & AFFILIATIONS END =============== -->
+
         <!-- =============== ABOUT SECTION START =============== -->
         <section id="about" class="section_top_spacing">
             <div class="container">
                 <div class="about_section">
                     <h2 class="section_title" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
-                        data-aos-duration="300" data-text="About">About</h2>
-                    <div class="row mt-2">
-                        <div class="col-lg-6">
-                            <div class="about_video" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
-                                <div class="about_img">
-                                    <img src="./assets/image/about/about-img.jpg" alt="about-img"
-                                        class="img-fluid w-100 about-img">
-                                    <!-- <a class="video_link" href="https://www.youtube.com/watch?v=Z8PBKpAbfvI">
-                                        <img src="./assets/image/icon/play-btn.png" alt="play-btn" class="play_btn">
-                                    </a>
-                                -->
+                        data-aos-duration="300" data-text="About">Live Stream</h2>
+                    <div class="row mt-2 justify-content-center">
+                        <div class="row mt-2">
+                            <div class="col-lg-5 text-center" style="padding: 10px;"> <!-- Reduced column size for image -->
+                                <div class="about_video" data-aos="fade-up" data-aos-anchor-placement="top-bottom">
+                                    <div class="about_img">
+                                        <img src="./assets/image/about/about-img.jpg" alt="about-img"
+                                            class="img-fluid w-100 about-img">
+                                    </div>
                                 </div>
                             </div>
+                            <div class="col-lg-7" style="padding: 10px;"> <!-- Increased column size for Twitch stream -->
+                                <iframe
+                                id="twitchStream"
+                                src="https://player.twitch.tv/?channel=ThinBlueBarBQue&parent=thinbluebbq.com&parent=www.thinbluebbq.com&autoplay=true&muted=true"
+                                height="100%" 
+                                width="100%" 
+                                allowfullscreen>
+                            </iframe>
+                            </div>
                         </div>
-                        <div class="col-lg-6">
-                            
-                                <p data-aos="fade-up" data-aos-anchor-placement="top-bottom">This is Thin Blue BBQ where law enforcement officers with a passion for service and BBQ come together to compete, cater, and create unforgettable culinary experiences. Our team is driven by a shared love for bold flavors and the art of smoking, using fresh, locally sourced ingredients to craft award-winning BBQ.</p>
-    
-                                <p data-aos="fade-up" data-aos-anchor-placement="top-bottom">As a competition team, we bring our best to every event, blending tradition and innovation to deliver mouthwatering results. From slow-smoked brisket to perfectly seasoned ribs, every bite showcases our dedication to quality and flavor. Our expertise doesn’t stop at the competition table — we also offer catering services for events big and small. Whether it’s a family reunion, corporate gathering, or wedding, Thin Blue will bring the same championship-level BBQ to your special occasion.</p>
-                                
-                                <p data-aos="fade-up" data-aos-anchor-placement="top-bottom">Based in the heart of Michigan, we’re proud to serve our community and share our passion for BBQ. Let Thin Blue make your next event unforgettable with savory, smoky goodness and a side of warm hospitality.</p>
-                                
-    
+                        <button onclick="unmuteTwitch()">Unmute Stream</button>
+                        <br>
+                        <br>
+                        <div class="marquee-container" style="overflow: hidden; white-space: nowrap; margin-top: 2rem;">
+
                         </div>
+                        <br>
+                        <script>
+                        function unmuteTwitch() {
+                            const iframe = document.getElementById("twitchStream");
+                            const currentSrc = iframe.src;
+                            const newSrc = currentSrc.replace("&muted=true", "&muted=false");
+                            iframe.src = newSrc;
+                        }
+                        </script>
                     </div>
                 </div>
             </div>
         </section>
         <!-- =============== ABOUT SECTION END  =============== -->
+<<<<<<< Updated upstream
+=======
+
+        <!-- =============== twitch streaming SECTION START =============== -->
+        <section id="twitch" class="section_top_spacing">
+            <div class="container">
+                <div class="twitch_section">
+                    <br>
+                    <h2 class="section_title" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                        data-aos-duration="300" data-text="twitch">Thin Blue Media</h2>
+                    <div class="row mt-2">
+                 
+                        <!--<iframe src="https://player.twitch.tv/?channel=thinbluebbq&parent=localhost" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>-->
+                        <!--<iframe src="https://player.twitch.tv/?channel=stableronaldo&parent=localhost" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>-->
+                    <style>
+                      a[href="https://elfsight.com/instagram-feed-instashow/?utm_source=websites&utm_medium=clients&utm_content=instashow&utm_term=127.0.0.1&utm_campaign=free-widget"] {
+                        display: none !important;
+                      }
+                    </style>
+                        <!--instaaa -->
+                    <script src="https://static.elfsight.com/platform/platform.js" async></script>
+                    <div class="elfsight-app-f2348ccc-61bd-4cd4-b66c-381f5613e601" data-elfsight-app-lazy></div>
+                    <style>
+                      .twitch_section .elfsight-app-f2348ccc-61bd-4cd4-b66c-381f5613e601 a[href="https://elfsight.com/instagram-feed-instashow/?utm_source=websites&utm_medium=clients&utm_content=instashow&utm_term=127.0.0.1&utm_campaign=free-widget"] {
+                        display: none !important;
+                      }
+                    </style>
+
+                    <!-- new trial not complited <div id="instafeed"></div>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/instafeed.js@2/dist/instafeed.min.js"></script>
+                    <script type="text/javascript">
+                    var feed = new Instafeed({
+                        accessToken: 'YOUR_INSTAGRAM_ACCESS_TOKEN',
+                        limit: 8,
+                        template: '<a href="{{link}}" target="_blank"><img src="{{image}}" /></a>'
+                    });
+                    feed.run();
+                    </script>-->
+
+                    <!-- my post (only one post is shown: <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/C5jvukTtlC0/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; 
+                        max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a id="main_link" href="https://www.instagram.com/p/C5jvukTtlC0/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; 
+                        padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_self"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> 
+                        <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> 
+                        <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;">
+                        <a href="https://www.instagram.com/thinbluebbqmotorcity/" data-bs-target="_self" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">Shared post</a> on <time style=" font-family:Arial,sans-serif; font-size:14px; line-height:17px;">Time</time></p></div></blockquote><script src="https://www.instagram.com/embed.js">
+
+                                </script><script type="text/javascript" src="https://www.embedista.com/j/instagram.js"></script><div style="overflow: auto; position: absolute; height: 0pt; width: 0pt;"><a href="https://www.embedista.com/instagram">Embed Instagram Post</a> Code Generator</div></div>
+                                <style>.boxes3{height:175px;width:153px;} #n img{max-height:none!important;max-width:none!important;background:none!important} #inst i{max-height:none!important;max-width:none!important;background:none!important}</style></div>
+                            -->
+                        
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+        <!-- =============== twitch streaming SECTION END  =============== -->
+>>>>>>> Stashed changes
          
 
     <!-- =============== Last_watch SECTION START =============== -->
@@ -184,10 +420,14 @@
         <div class="container">
             <div class="Last_watch_section">
                 <h2 class="section_title" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+<<<<<<< Updated upstream
                     data-aos-duration="300" data-text="Last_watch">True Blue Hero's</h2>
+=======
+                    data-aos-duration="300" data-text="Last_watch">True Blue Heros</h2>
+>>>>>>> Stashed changes
             </div>
             <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
+                <div class="carousel-inner" id="lastWatchCarouselInner">
                     <div class="carousel-item active">
                         <div class="card">
                             <img src="assets\image\Photos\benny.jpg" alt="BBQ Competition 1" class="competition_img1" class="card-img-top" >
@@ -917,8 +1157,9 @@
                     <div class="tab-pane fade" id="concessions-tab-pane" role="tabpanel" aria-labelledby="concessions-tab" tabindex="0">
                         <div class="row">
                             <!-- Column 1 -->
-                            <div class="col-lg-6">
-                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="300">
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                                    data-aos-duration="300">
                                     <div class="menu-title-desc">
                                         <h5>Hot Dogs</h5>
                                     </div>
@@ -930,7 +1171,8 @@
                                         <span>$4.00</span>
                                     </div>
                                 </div>
-                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="300">
+                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                                    data-aos-duration="300">
                                     <div class="menu-title-desc">
                                         <h5>Hot Dog Combo</h5>
                                     </div>
@@ -942,7 +1184,8 @@
                                         <span>$8.00</span>
                                     </div>
                                 </div>
-                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="300">
+                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                                    data-aos-duration="300">
                                     <div class="menu-title-desc">
                                         <h5>Pizza Rolls</h5>
                                     </div>
@@ -954,7 +1197,8 @@
                                         <span>$8.00</span>
                                     </div>
                                 </div>
-                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="300">
+                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                                    data-aos-duration="300">
                                     <div class="menu-title-desc">
                                         <h5>Walking Taco</h5>
                                     </div>
@@ -968,8 +1212,9 @@
                                 </div>
                             </div>
                             <!-- Column 2 -->
-                            <div class="col-lg-6">
-                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="300">
+                            <div class="col-lg-4 col-sm-6">
+                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                                    data-aos-duration="300">
                                     <div class="menu-title-desc">
                                         <h5>Loaded Nachos</h5>
                                     </div>
@@ -981,7 +1226,8 @@
                                         <span>$6.00</span>
                                     </div>
                                 </div>
-                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="300">
+                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                                    data-aos-duration="300">
                                     <div class="menu-title-desc">
                                         <h5>Popcorn</h5>
                                     </div>
@@ -993,7 +1239,8 @@
                                         <span>$4.00</span>
                                     </div>
                                 </div>
-                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="300">
+                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                                    data-aos-duration="300">
                                     <div class="menu-title-desc">
                                         <h5>Nachos</h5>
                                     </div>
@@ -1005,7 +1252,8 @@
                                         <span>$4.00</span>
                                     </div>
                                 </div>
-                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="300">
+                                <div class="menu-item-wrapper" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
+                                    data-aos-duration="300">
                                     <div class="menu-title-desc">
                                         <h5>Drinks</h5>
                                     </div>
@@ -1079,11 +1327,12 @@
                                     <span>$25</span>
                                 </div>
                             </div>
-                            <!--wha do u mean by this-->
-                            <span>Per Person, Events come with the below item,
-                                <br>• Garden Salad or Spring Salad
-                                <br>• Bread or Rolls
-                                <br>• Desert </span>
+                            <div style="text-align: center;">
+                                <span>Per Person, Events come with the below item,
+                                    <br>• Garden Salad or Spring Salad
+                                    <br>• Bread or Rolls
+                                    <br>• Desert </span>
+                            </div>
                         </div>
                         
                     </div>
@@ -1178,11 +1427,14 @@
             </div>
         </div>
         <br>
-        <h3>All orders are available for Pickup or Delivery.
-            A delivery fee of $75.00 will be applied.
-            On-Site Cook Fee - $500<br><br>
-            Plates, utensils, napkins, buns, and chaffing dishes can be purchased
-            for an additional charge.</h3>
+        <h3>
+            <ul>
+                <li>All orders are available for Pickup or Delivery.</li>
+                <li>A delivery fee of $75.00 will be applied.</li>
+                <li>On-Site Cook Fee - $500</li>
+                <li>Plates, utensils, napkins, buns, and chaffing dishes can be purchased for an additional charge.</li>
+            </ul>
+        </h3>
         </div>
         
     
@@ -1267,69 +1519,39 @@
                         <div class="carousel-item active">
                             <div class="card">
                                 <img src="./assets/image/competitions/comp-1.jpg" alt="BBQ Competition 1" class="competition_img1" class="card-img-top" >
-                                <div class="card-body">
-                                    <h5 class="competition_name">SMOKE IN THE MITTEN </h5>
-                                    <p><strong>Date:</strong> May 4, 2024</p>
-                                    <p><strong>Place:</strong> 1st</p>
-                                    <p><strong>Top Protien:</strong> Ribs</p>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="card">
                                 <img src="./assets/image/competitions/comp-2.jpg" alt="BBQ Competition 2" class="competition_img1" class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="competition_name">BUCKEYE BBQ CLASSIC</h5>
-                                    <p><strong>Date:</strong> July 20, 2024</p>
-                                    <p><strong>Place:</strong> 10th</p>
-                                    <p><strong>Top Protien:</strong> Pork</p>
-                                </div>
+                                
                             </div>
                         </div>
                         
                         <div class="carousel-item">
                             <div class="card">
                                 <img src="./assets/image/competitions/comp-3.jpg" alt="BBQ Competition 3" class="competition_img1" class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="competition_name">Smokin' BBQ Fest 2024</h5>
-                                    <p><strong>Date:</strong> March 12, 2024</p>
-                                    <p><strong>Place:</strong> Pitmaster Joe's BBQ</p>
-                                    <p><strong>Top Protien:</strong> </p>
-                                </div>
+                                
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="card">
                                 <img src="./assets/image/competitions/comp-4.jpg" alt="BBQ Competition 3" class="competition_img1" class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="competition_name">Smokin' BBQ Fest 2024</h5>
-                                    <p><strong>Date:</strong> March 12, 2024</p>
-                                    <p><strong>Place:</strong> Pitmaster Joe's BBQ</p>
-                                    <p><strong>Top Protien:</strong></p>
-                                </div>
+                               
                             </div>
                         </div>
                         <div class="carousel-item">
                             <div class="card">
                                 <img src="./assets/image/competitions/comp-5.jpg" alt="BBQ Competition 3" class="competition_img1" class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="competition_name">BUCKEYE BBQ CLASSIC</h5>
-                                    <p><strong>Date:</strong> March 12, 2024</p>
-                                    <p><strong>Place:</strong> 10th</p>
-                                    <p><strong>Top Protien:</strong> PORK</p>
-                                </div>
+                                
                             </div>
                         </div>
                     
                         <div class="carousel-item">
                             <div class="card">
                                 <img src="./assets/image/competitions/comp-6.jpg" alt="BBQ Competition 3" class="competition_img1" class="card-img-top">
-                                <div class="card-body">
-                                    <h5 class="competition_name"> Detroit Police Back Yard Competition</h5>
-                                    <p><strong>Date:</strong> June 12, 2020</p>
-                                    <p><strong>Place:</strong> 1st</p>
-                                    <p><strong>Top Protien:</strong> Ribs & Chicken</p>
-                                </div>
+                                
                             </div>
                         </div>
                     </div>
@@ -1351,7 +1573,8 @@
                         <div class="carousel slide" data-bs-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active" data-bs-interval="3000">
-                                    <div class="competition_card" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="300">
+                                    <div class="competition_card" data-aos="fade-up"
+                                        data-aos-anchor-placement="top-bottom" data-aos-duration="300">
                                         <div class="competition_img_wrapper">
                                             <img src="./assets/image/competitions/competition-1.jpg" alt="BBQ Competition 1" class="competition_img">
                                         </div>
@@ -1362,7 +1585,8 @@
                                     </div>
                                 </div>
                                 <div class="carousel-item" data-bs-interval="3000">
-                                    <div class="competition_card" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="450">
+                                    <div class="competition_card" data-aos="fade-up"
+                                        data-aos-anchor-placement="top-bottom" data-aos-duration="450">
                                         <div class="competition_img_wrapper">
                                             <img src="./assets/image/competitions/competition-2.jpg" alt="BBQ Competition 2" class="competition_img">
                                         </div>
@@ -1372,14 +1596,9 @@
                                         <p><strong>Top Dish:</strong> Hickory Smoked Ribs</p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-6 competition-col">
-                        <div class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active" data-bs-interval="3000">
-                                    <div class="competition_card" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="300">
+                                <div class="carousel-item" data-bs-interval="3000">
+                                    <div class="competition_card" data-aos="fade-up"
+                                        data-aos-anchor-placement="top-bottom" data-aos-duration="600">
                                         <div class="competition_img_wrapper">
                                             <img src="./assets/image/competitions/competition-3.jpg" alt="BBQ Competition 3" class="competition_img">
                                         </div>
@@ -1389,8 +1608,15 @@
                                         <p><strong>Top Dish:</strong> Mesquite Grilled Sausage</p>
                                     </div>
                                 </div>
-                                <div class="carousel-item" data-bs-interval="3000">
-                                    <div class="competition_card" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="450">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-6 competition-col">
+                        <div class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" data-bs-interval="3000">
+                                    <div class="competition_card" data-aos="fade-up"
+                                        data-aos-anchor-placement="top-bottom" data-aos-duration="300">
                                         <div class="competition_img_wrapper">
                                             <img src="./assets/image/competitions/competition-4.jpg" alt="BBQ Competition 4" class="competition_img">
                                         </div>
@@ -1400,14 +1626,9 @@
                                         <p><strong>Top Dish:</strong> Burnt Ends Sandwich</p>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-sm-12 competition-col">
-                        <div class="carousel slide" data-bs-ride="carousel">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active" data-bs-interval="3000">
-                                    <div class="competition_card" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="300">
+                                <div class="carousel-item" data-bs-interval="3000">
+                                    <div class="competition_card" data-aos="fade-up"
+                                        data-aos-anchor-placement="top-bottom" data-aos-duration="450">
                                         <div class="competition_img_wrapper">
                                             <img src="./assets/image/competitions/competition-5.jpg" alt="BBQ Competition 5" class="competition_img">
                                         </div>
@@ -1418,7 +1639,8 @@
                                     </div>
                                 </div>
                                 <div class="carousel-item" data-bs-interval="3000">
-                                    <div class="competition_card" data-aos="fade-up" data-aos-anchor-placement="top-bottom" data-aos-duration="450">
+                                    <div class="competition_card" data-aos="fade-up"
+                                        data-aos-anchor-placement="top-bottom" data-aos-duration="600">
                                         <div class="competition_img_wrapper">
                                             <img src="./assets/image/competitions/competition-6.jpg" alt="BBQ Competition 6" class="competition_img">
                                         </div>
@@ -1426,6 +1648,48 @@
                                         <p><strong>Date:</strong> December 5, 2024</p>
                                         <p><strong>Grand Champion:</strong> Bluff City BBQ Masters</p>
                                         <p><strong>Top Dish:</strong> Smoked Turkey Legs</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-sm-12 competition-col">
+                        <div class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-inner">
+                                <div class="carousel-item active" data-bs-interval="3000">
+                                    <div class="competition_card" data-aos="fade-up"
+                                        data-aos-anchor-placement="top-bottom" data-aos-duration="300">
+                                        <div class="competition_img_wrapper">
+                                            <img src="./assets/image/competitions/competition-7.jpg" alt="BBQ Competition 7" class="competition_img">
+                                        </div>
+                                        <h5 class="competition_name">Nashville BBQ Festival</h5>
+                                        <p><strong>Date:</strong> January 10, 2025</p>
+                                        <p><strong>Grand Champion:</strong> Music City BBQ Masters</p>
+                                        <p><strong>Top Dish:</strong> Smoked Pulled Pork</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item" data-bs-interval="3000">
+                                    <div class="competition_card" data-aos="fade-up"
+                                        data-aos-anchor-placement="top-bottom" data-aos-duration="450">
+                                        <div class="competition_img_wrapper">
+                                            <img src="./assets/image/competitions/competition-8.jpg" alt="BBQ Competition 8" class="competition_img">
+                                        </div>
+                                        <h5 class="competition_name">Austin BBQ Showdown</h5>
+                                        <p><strong>Date:</strong> February 20, 2025</p>
+                                        <p><strong>Grand Champion:</strong> Texas BBQ Renegades</p>
+                                        <p><strong>Top Dish:</strong> Smoked Brisket</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item" data-bs-interval="3000">
+                                    <div class="competition_card" data-aos="fade-up"
+                                        data-aos-anchor-placement="top-bottom" data-aos-duration="600">
+                                        <div class="competition_img_wrapper">
+                                            <img src="./assets/image/competitions/competition-9.jpg" alt="BBQ Competition 9" class="competition_img">
+                                        </div>
+                                        <h5 class="competition_name">Chicago BBQ Cook-Off</h5>
+                                        <p><strong>Date:</strong> March 15, 2025</p>
+                                        <p><strong>Grand Champion:</strong> Windy City BBQ Warriors</p>
+                                        <p><strong>Top Dish:</strong> Smoked Ribs</p>
                                     </div>
                                 </div>
                             </div>
@@ -1691,7 +1955,12 @@
                         </div>
                     </div>
                 </div>
+<<<<<<< Updated upstream
                 
+=======
+                <div class="event-info">
+               </div>
+>>>>>>> Stashed changes
             </div>
         </div>
     </section>
@@ -1724,7 +1993,7 @@
                         </form>
                     </div>
                     
-                    <div class="col-lg-6 align-self-center">
+                    <div class="col-lg-6 align-self-center text-center">
                         <div class="contact-img-wrapper">
                             <img src="assets/image/contact-us/contact-us.jpg" alt="contact" class="img-fluid">
                         </div>
@@ -1767,10 +2036,11 @@
                 <div class="col-lg-3 col-sm-6 footer-col" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
                     data-aos-duration="300">
                     <a class="footer_logo" href="index.html">
-                        <img src="assets/image/light-logo.png" alt="logo" class="img-fluid logo" id="footer-logo">
+                        <img src="assets/image/dark-logo.png" alt="logo" class="img-fluid logo" id="footer-logo">
                     </a>
                     <p class="mt-2">Smokin’ the Competition <br> One Bite at a Time!</p>
                 </div>
+                <!--
                 <div class="col-lg-3 col-sm-6 footer-col" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
                     data-aos-duration="450">
                     <h4 class="footer_detail_title">Page</h4>
@@ -1792,7 +2062,8 @@
                         <li><a href="#">Village Market</a></li>
                         
                     </ul>
-                </div>
+                </div> 
+            -->
                 <div class="col-lg-3 col-sm-6 footer-col" data-aos="fade-up" data-aos-anchor-placement="top-bottom"
                     data-aos-duration="750">
                     <h4 class="footer_detail_title">Socials</h4>
@@ -1804,6 +2075,7 @@
                         <a href="https://www.youtube.com/@gregsawmillerthinbluebbq" class="icon"><i class="fa-brands fa-youtube"></i></a>
                     </div>
                 </div>
+                
             </div>
         </div>
     </footer>
@@ -1811,13 +2083,15 @@
 
 
     <!-- =============== JS =============== -->
-    <script src="./assets/js/jquery.min.js"></script>
-    <script src="./assets/js/bootstrap.bundle.min.js"></script>
-    <script src="./assets/js/jquery-magnific-popup.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>
     <script>
         $('.video_link').magnificPopup({ type: 'iframe' });
     </script>
-    <script src="./assets/js/aos.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
         AOS.init();
     </script>
@@ -1829,6 +2103,24 @@
         <span>Call Now</span>
     </a>
 
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-3gJwYp4gE4yR6k9gIK3E8lYBqDkP2g8E6+7F2i0yQ7o=" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function(){
+    var $carouselInner = $('#lastWatchCarouselInner');
+    if ($carouselInner.length) {
+        var $items = $carouselInner.children('.carousel-item');
+        // Shuffle using Fisher-Yates
+        for (let i = $items.length - 1; i > 0; i--) {
+            let j = Math.floor(Math.random() * (i + 1));
+            $items.eq(i).before($items.eq(j));
+        }
+        $carouselInner.children('.carousel-item').removeClass('active').first().addClass('active');
+        console.log('jQuery: Randomized True Blue Heros carousel!');
+    }
+});
+</script>
+<script src="https://kit.fontawesome.com/7f10a3e8c3.js" crossorigin="anonymous"></script>
+<script src="./assets/js/event-strikethrough.js"></script>
 </body>
 
 </html>
