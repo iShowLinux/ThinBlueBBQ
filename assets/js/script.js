@@ -87,22 +87,23 @@ jQuery(window).on("scroll", onScroll);
 var carouselWidth = $(".carousel-inner")[0].scrollWidth;
 var cardWidth = $(".carousel-item").width();
 var scrollPosition = 0;
-$(".carousel-control-next").on("click", function () {
-    if (scrollPosition < (carouselWidth - cardWidth * 4)) { //check if you can go any further
-      scrollPosition += cardWidth;  //update scroll position
-      $(".carousel-inner").animate({ scrollLeft: scrollPosition },600); //scroll left
-    }
-});
-
-$(".carousel-control-prev").on("click", function () {
-    if (scrollPosition > 0) {
-        scrollPosition -= cardWidth;
-        $(".carousel-inner").animate(
-            { scrollLeft: scrollPosition },
-            600
-        );
-    }
-});
+// Removed custom carousel control to allow Bootstrap's automatic sliding
+// $(".carousel-control-next").on("click", function () {
+//     if (scrollPosition < (carouselWidth - cardWidth * 4)) { //check if you can go any further
+//       scrollPosition += cardWidth;  //update scroll position
+//       $(".carousel-inner").animate({ scrollLeft: scrollPosition },600); //scroll left
+//     }
+// });
+//
+// $(".carousel-control-prev").on("click", function () {
+//     if (scrollPosition > 0) {
+//         scrollPosition -= cardWidth;
+//         $(".carousel-inner").animate(
+//             { scrollLeft: scrollPosition },
+//             600
+//         );
+//     }
+// });
 
 
 // =============== DISABLE INSPECT & SAVE CODE ===============
