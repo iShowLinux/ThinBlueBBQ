@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Thin Blue BBQ Design System - Rich, smoky BBQ theme with police blue heritage */
+
+@layer base {
+  :root {
+    /* Core brand colors */
+    --background: 42 15% 96%;
+    --foreground: 215 25% 15%;
+
+    /* Card styling */
+    --card: 0 0% 100%;
+    --card-foreground: 215 25% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 215 25% 15%;
+
+    /* Primary - Deep police blue */
+    --primary: 215 85% 25%;
+    --primary-foreground: 42 15% 96%;
+    --primary-glow: 215 85% 35%;
+
+    /* Secondary - Smoky red */
+    --secondary: 15 75% 45%;
+    --secondary-foreground: 42 15% 96%;
+
+    /* Muted tones */
+    --muted: 42 20% 90%;
+    --muted-foreground: 215 15% 45%;
+
+    /* Accent - Golden amber */
+    --accent: 35 85% 55%;
+    --accent-foreground: 215 25% 15%;
+
+    /* Smoke gray */
+    --smoke: 220 10% 25%;
+    --smoke-foreground: 42 15% 96%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 42 20% 85%;
+    --input: 42 20% 90%;
+    --ring: 215 85% 25%;
+
+    --radius: 0.75rem;
+
+    /* Custom gradients */
+    --gradient-hero: linear-gradient(135deg, hsl(215 85% 25%) 0%, hsl(215 75% 35%) 50%, hsl(15 75% 45%) 100%);
+    --gradient-smoke: linear-gradient(180deg, hsl(220 10% 25% / 0.9) 0%, hsl(220 10% 15% / 0.95) 100%);
+    --gradient-accent: linear-gradient(45deg, hsl(35 85% 55%) 0%, hsl(25 80% 60%) 100%);
+    
+    /* Shadows */
+    --shadow-glow: 0 0 40px hsl(215 85% 25% / 0.3);
+    --shadow-smoke: 0 10px 40px -15px hsl(220 10% 15% / 0.4);
+    --shadow-warm: 0 8px 32px -8px hsl(35 85% 55% / 0.3);
+
+    /* Animation */
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 15% 8%;
+    --foreground: 42 15% 90%;
+
+    --card: 220 15% 12%;
+    --card-foreground: 42 15% 90%;
+
+    --popover: 220 15% 12%;
+    --popover-foreground: 42 15% 90%;
+
+    --primary: 215 85% 35%;
+    --primary-foreground: 42 15% 96%;
+    --primary-glow: 215 85% 45%;
+
+    --secondary: 15 75% 55%;
+    --secondary-foreground: 42 15% 96%;
+
+    --muted: 220 15% 18%;
+    --muted-foreground: 215 15% 65%;
+
+    --accent: 35 85% 65%;
+    --accent-foreground: 220 15% 8%;
+
+    --smoke: 220 10% 85%;
+    --smoke-foreground: 220 15% 8%;
+
+    --destructive: 0 62.8% 50.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 15% 20%;
+    --input: 220 15% 18%;
+    --ring: 215 85% 35%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Smooth horizontal scrolling for carousels */
+  .scrollbar-hide {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom scroll bar */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-muted;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-glow;
+  }
+}
+
+@layer components {
+  /* Gradient text effects */
+  .gradient-text {
+    background: var(--gradient-hero);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .gradient-accent-text {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glow effects */
+  .glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .smoke-shadow {
+    box-shadow: var(--shadow-smoke);
+  }
+
+  .warm-shadow {
+    box-shadow: var(--shadow-warm);
+  }
+
+  /* Animation helpers */
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+
+  .transition-bounce {
+    transition: var(--transition-bounce);
+  }
+
+  /* Hide scrollbar for horizontal scroll */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+  }
+  .scrollbar-hide::-webkit-scrollbar { 
+    display: none;  /* Safari and Chrome */
+  }
+
+  /* Ensure card text renders in normal horizontal flow in case stray CSS leaks in */
+  .normalize-text {
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
+    white-space: normal !important;
+    word-break: normal !important;
+    letter-spacing: normal !important;
+    line-height: 1.6 !important;
+  }
+}
