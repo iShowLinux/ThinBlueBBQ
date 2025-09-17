@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Award, Users, Clock } from "lucide-react";
 import heroBbq from "@/assets/hero-bbq.jpg";
+import pigbbq from "@/assets/pigbbq.png";
 
 const Hero = () => {
   return (
@@ -20,8 +21,17 @@ const Hero = () => {
       </div>
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-4 text-center">
+      <div className="relative z-10 container mx-auto px-4 text-center pt-20">
         <div className="max-w-4xl mx-auto animate-fade-in">
+          {/* Pig BBQ Logo */}
+          <div className="mb-8 flex justify-center">
+            <img 
+              src={pigbbq} 
+              alt="Thin Blue BBQ Pig Logo" 
+              className="w-56 h-56 md:w-64 md:h-64 object-contain animate-float"
+            />
+          </div>
+          
           <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground mb-6 leading-tight">
             A BBQ Journey
             <span className="block gradient-accent-text">Like No Other</span>

@@ -22,7 +22,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center space-x-3">
-            <img src={websiteIcon} alt="Thin Blue BBQ" className="w-10 h-10 rounded-full object-cover" />
+            <img src={websiteIcon} alt="Thin Blue BBQ" className="w-14 h-14 rounded-full object-cover" />
             <span className="text-xl font-bold gradient-text">Thin Blue BBQ</span>
           </div>
 
