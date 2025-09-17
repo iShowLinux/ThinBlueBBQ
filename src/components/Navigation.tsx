@@ -1,19 +1,21 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 import websiteIcon from "@/assets/website-icon.png";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navItems = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Services", href: "#services" },
-    { name: "Team", href: "#team" },
-    { name: "Competitions", href: "#competitions" },
-    { name: "Instagram", href: "#instagram" },
-    { name: "Contact", href: "#contact" },
+    { name: "Home", href: "#home", isLink: false },
+    { name: "About", href: "#about", isLink: false },
+    { name: "Services", href: "#services", isLink: false },
+    { name: "Catering", href: "/catering", isLink: true },
+    { name: "Team", href: "#team", isLink: false },
+    { name: "Competitions", href: "#competitions", isLink: false },
+    { name: "Instagram", href: "#instagram", isLink: false },
+    { name: "Contact", href: "#contact", isLink: false },
   ];
 
   return (
@@ -29,13 +31,23 @@ const Navigation = () => {
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-foreground hover:text-primary transition-smooth font-medium"
-              >
-                {item.name}
-              </a>
+              item.isLink ? (
+                <Link
+                  key={item.name}
+                  to={item.href}
+                  className="text-foreground hover:text-primary transition-smooth font-medium"
+                >
+                  {item.name}
+                </Link>
+              ) : (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="text-foreground hover:text-primary transition-smooth font-medium"
+                >
+                  {item.name}
+                </a>
+              )
             ))}
             <Button 
               variant="hero" 
@@ -63,14 +75,25 @@ const Navigation = () => {
           <div className="md:hidden border-t border-border bg-background/95 animate-fade-in">
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="block px-3 py-2 text-foreground hover:text-primary transition-smooth font-medium"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.name}
-                </a>
+                item.isLink ? (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="block px-3 py-2 text-foreground hover:text-primary transition-smooth font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="block px-3 py-2 text-foreground hover:text-primary transition-smooth font-medium"
+                    onClick={() => setIsOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                )
               ))}
               <div className="px-3 py-2">
                 <Button 
