@@ -28,7 +28,7 @@ const Hero = () => {
             <img 
               src={pigbbq} 
               alt="Thin Blue BBQ Pig Logo" 
-              className="w-56 h-56 md:w-64 md:h-64 object-contain animate-float"
+              className="w-96 h-96 md:w-126 md:h-126 object-contain animate-float"
             />
           </div>
           
