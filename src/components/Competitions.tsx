@@ -51,7 +51,7 @@ const Competitions = () => {
       isNew: true
     },
     {
-      date: "12-13 SEP",
+      date: "19-20 SEP",
       location: "Coldwater, Michigan",
       event: "September Fest BBQ Cookoff - Branch County Fairgrounds",
       isNew: true
