@@ -2,8 +2,7 @@
 
 Ignite your senses with Thin Blue BBQ – where mouthwatering competition BBQ meets live, real-time streaming action, bringing the smoky thrill of the grill straight to your screen from the heart of the pit.
 
-![Hero Image of BBQ Pit](https://via.placeholder.com/800x400/8B4513/FFD700?text=Thin+Blue+BBQ+-+Live+from+the+Pit)  
-*(Imagine the sizzle: ribs glazing over flames, smoke curling up, all streamed in crystal-clear HD.)*
+<img width="1910" height="910" alt="image" src="https://github.com/user-attachments/assets/f0b30b66-4d24-45e7-a81f-602c3ae408d4" />
 
 ## Welcome to the Pit
 
@@ -11,8 +10,7 @@ Step into the world of Thin Blue BBQ, a competition-style restaurant site that's
 
 **Taste It Live:** [Visit the Demo](https://www.thinbluebbq.com) – Fire up your browser and join the action now!
 
-![Live Streaming GIF](https://via.placeholder.com/600x400/654321/FFF?text=Real-Time+BBQ+Stream+-+Watch+the+Magic+Happen)  
-*(A quick peek: Watch a pit master flip brisket live, with chat buzzing in the background.)*
+<img width="1706" height="727" alt="image" src="https://github.com/user-attachments/assets/5142b669-a8c5-46af-83ce-522a26f87f55" />
 
 ## What's Cooking? Key Features
 
@@ -41,7 +39,11 @@ We've built this bad boy with tools that handle the heat of real-time demands wi
 
 Together, Next.js + Node.js enable those instant updates via WebSockets, so streams refresh without a single page reload. It's performant, scalable, and ready to serve crowds.
 
-![Tech Stack Badges](https://via.placeholder.com/800x100/000/FFF?text=React+%7C+Next.js+%7C+TypeScript+%7C+Node.js+%7C+Docker)
+<img width="86" height="28" alt="image" src="https://github.com/user-attachments/assets/4b612413-20bb-4cf8-af92-8915e5778919" />
+<img width="78" height="28" alt="image" src="https://github.com/user-attachments/assets/ff821480-43db-40bb-958b-96ad3380294b" />
+<img width="127" height="28" alt="image" src="https://github.com/user-attachments/assets/ffcf1154-a366-4d81-ac60-a3a43c399704" />
+<img width="101" height="28" alt="image" src="https://github.com/user-attachments/assets/af7540d9-6eb8-485b-b206-f066f5ae0bbd" />
+<img width="98" height="28" alt="image" src="https://github.com/user-attachments/assets/9d9a5796-dab4-4280-9417-edcb58a8cf30" />
 
 ## Fire It Up: Local Setup
 
@@ -95,4 +97,9 @@ Love the vibe? Got feedback on the BBQ lineup, stream quality, or even a wild id
 - **Tech Tweaks & Bugs:** Head to [GitHub Issues](https://github.com/girll235/ThinBlueBBQ/issues) – suggest streaming upgrades or report any "over-smoked" glitches.
 - **Follow the Smoke:** Connect on socials [@ThinBlueBBQ](https://twitter.com/thinbluebbq) for live event alerts and behind-the-scenes peeks.
 
+## Contact
 Got a killer recipe or stream idea? Let's BBQ about it – fire away! 🌭🔥
+
+Sabrine Ben Tili - [@girll235](https://www.linkedin.com/in/sabrine-ben-tili/)
+Project Link: [https://github.com/girll235/ThinBlueBBQ](https://github.com/girll235/ThinBlueBBQ)
+
