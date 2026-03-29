@@ -97,9 +97,4 @@ Love the vibe? Got feedback on the BBQ lineup, stream quality, or even a wild id
 - **Tech Tweaks & Bugs:** Head to [GitHub Issues](https://github.com/girll235/ThinBlueBBQ/issues) – suggest streaming upgrades or report any "over-smoked" glitches.
 - **Follow the Smoke:** Connect on socials [@ThinBlueBBQ](https://twitter.com/thinbluebbq) for live event alerts and behind-the-scenes peeks.
 
-## Contact
-Got a killer recipe or stream idea? Let's BBQ about it – fire away! 🌭🔥
-
-Sabrine Ben Tili - [@girll235](https://www.linkedin.com/in/sabrine-ben-tili/)
-Project Link: [https://github.com/girll235/ThinBlueBBQ](https://github.com/girll235/ThinBlueBBQ)
 
